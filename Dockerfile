@@ -4,7 +4,7 @@ WORKDIR /data
 ADD ./dump.py /dump.py
 RUN pacman -Sy --needed --noconfirm python pyalpm rsync nodejs npm git gcc cmake make
 RUN python /dump.py nodejs npm gcc cmake git make > list
-RUN rsync -avih ----exclude '*/' --files-from=/list / /data
+RUN rsync -avih --exclude '*/' --files-from=/list / /data
 
 FROM scratch
 
