@@ -8,7 +8,7 @@ if len(sys.argv) == 1:
 match_name = re.compile(r'^[a-zA-Z0-9-]+')
 db = pyalpm.Handle("/", "/var/lib/pacman").get_localdb()
 packages = set()
-package_blacklist = {'systemd', 'audit', 'tzdata', 'texinfo', 'man-db'}
+package_blacklist = {'systemd', 'audit', 'tzdata', 'texinfo', 'man-db', 'pacman'}
 file_blacklist = [re.compile(r) for r in [
     '^usr/lib/systemd/',
     '^etc/audisp/',
