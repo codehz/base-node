@@ -1,9 +1,12 @@
 FROM archlinux/base as builder
 
 WORKDIR /data
+LABEL maintainer=codehz
+ARG TARGETS="nodejs npm base-devel cmake git make util-linux systemd-libs jq"
 ADD ./dump.py /dump.py
-RUN pacman -Syu --needed --noconfirm python pyalpm rsync nodejs npm git gcc cmake make base base-devel
-RUN python /dump.py nodejs npm base-devel cmake git make util-linux systemd-libs > /list
+
+RUN pacman -Syu --needed --noconfirm python pyalpm rsync ${TARGETS}
+RUN python /dump.py ${TARGETS} > /list
 RUN rsync -avih --exclude '*/' --files-from=/list / /data
 ADD ./packager.sh /data
 
