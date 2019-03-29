@@ -37,6 +37,11 @@ def iterate_package(package):
         return
     pkg = db.get_pkg(package)
     if pkg is None:
+        grps = db.read_grp(package)
+        if grps is None:
+            return
+        for dep in grps[1]:
+            iterate_package(dep.name)
         return
     packages.add(package)
     direct_depends = map(lambda x: match_name.findall(x)[0], pkg.depends)
