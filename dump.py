@@ -17,7 +17,6 @@ file_blacklist = [re.compile(r) for r in [
     '^usr/lib/sysusers.d/'
     '^usr/share/man/',
     '^usr/lib/udev/',
-    '^usr/share/bash-completion/'
     '^usr/share/doc/',
     '^usr/share/factory/',
     '^usr/share/gtk-doc/',
